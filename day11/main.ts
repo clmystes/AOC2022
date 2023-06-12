@@ -1,6 +1,5 @@
-import { readStdin, assert, assertUnreachable } from "../utils.ts"
+import { readStdin, assert } from "../utils.ts"
 import { _ } from "../deps.ts"
-import { unreachable } from "https://deno.land/std@0.182.0/testing/asserts.ts"
 
 type Monkeys = {
   id: number
