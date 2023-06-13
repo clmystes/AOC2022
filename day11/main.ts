@@ -2,7 +2,6 @@ import { readStdin, assert } from "../utils.ts"
 import { _ } from "../deps.ts"
 
 type Monkeys = {
-  id: number
   items: number[]
   operation: string // e.g. old * 17
   divisibleBy: number
@@ -36,7 +35,6 @@ const monkeys: Monkeys = (await readStdin())
     )
 
     return {
-      id,
       items,
       divisibleBy,
       operation,
