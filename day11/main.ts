@@ -20,7 +20,7 @@ const monkeys: Monkeys = (await readStdin())
       .match(/Starting items(?:[:,] (\d+))+/g)![0]
       .split(": ")[1]
       .split(", ")
-      .map(Number)
+      .map((n) => BigInt(n))
 
     const operation = lines.match(/= ([^\n]+)/)![1]
 
@@ -76,7 +76,7 @@ function part1(monkeys: Monkeys) {
 }
 
 function part2(monkeys: Monkeys) {
-  const divider = monkeys.map((m) => m.divisibleBy).reduce((a, b) => a * b, 1)
+  // const divider = monkeys.map((m) => m.divisibleBy).reduce((a, b) => a * b, 1)
 
   for (let i = 0; i < 10000; i++) {
     for (const monkey of monkeys) {
@@ -87,14 +87,14 @@ function part2(monkeys: Monkeys) {
 
         monkey.inspectedTimes++
 
-        item = eval(monkey.operation.replace(/old/g, String(item)))
+        item = eval(monkey.operation.replace(/old/g, item?.toString() + "n"))
 
         assert(item != null)
 
-        item = item % divider
+        // item =
 
         const target =
-          item % monkey.divisibleBy === 0
+          (item % divider) % monkey.divisibleBy === 0
             ? monkey.trueMonkey
             : monkey.falseMonkey
 
